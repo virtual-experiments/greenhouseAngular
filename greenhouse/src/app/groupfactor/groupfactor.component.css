@@ -1,0 +1,44 @@
+.gfHeader{
+    display: inline-block;
+}
+
+.gfgroups{
+    display: inline-block;
+}
+
+#header{
+    background-color: white;
+    width: 100px;
+}
+
+.gf{
+    background-color: white;
+    overflow: hidden;
+    width: 100px;
+}
+
+table{
+    height: 100%;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.gftable{
+    height: 12%;
+    width: 15%;
+}
+
+.selected{
+    background-color: aqua;
+}
+
+.grouprow{
+    display: flex;
+}
+
+#help{
+    object-fit: fill;
+    height: 100%;
+    width: 100%;
+  
+}

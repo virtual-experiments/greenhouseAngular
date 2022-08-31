@@ -1,0 +1,24 @@
+
+<div  style="width:120px ;height: 120px;display: grid; grid-row: 1;grid-column: 1;">
+    <app-container #container  *ngFor="let i of trays" style="grid-area: 1 / 1 / 2 / 2;" [ngStyle]="{'z-index':i==traynb?1:0}"></app-container>
+</div>
+<div class="scrollbar">
+    <button class="scrollbtn" style="background-image: url(../assets/left.png);" (click)="prevTray()"  ></button>
+    <div  class="scroller"></div>
+    <button class="scrollbtn" style="background-image: url(../assets/right.png); " (click)="nextTray()"></button>
+</div>
+<div style="width:130px ;">
+    <p class="treatmentHeader" style="background-color:white ; width: 70%;margin-right: 2px;">Treatments</p>
+    <button class="treatmentHeader" [disabled]="addDisable" (click)="addTreatment()">Add</button>
+</div>
+<div *ngFor="let treatment of nbTreatments" style="width:40% ;" class="treatment">
+    <div *ngIf="addedtreatments>=treatment+1" class="treatments">
+        <input id="trname" [(ngModel)]="Treatments[treatment]" style="height:100%;">
+        <div #colorPicker1 (click)="colorPicked(treatment)" class="colorPicker" [ngStyle]="{'background-color':colors[getColorPicker().doses[treatment]-1]}">{{"Dose "+(getColorPicker().doses[treatment])}}</div>
+        <button class="leftbtn" style="background-image: url(../assets/left.png);" (click)="decreaseDose(treatment)"></button>
+        <button class="rightbtn" style="background-image: url(../assets/right.png);" (click)="increaseDose(treatment)"></button>
+    </div>
+</div>
+
+
+

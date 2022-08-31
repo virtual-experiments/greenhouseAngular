@@ -1,0 +1,6 @@
+<div class="container" style="background-color: darkseagreen;">
+    <div *ngFor="let i of nbPlants" class="plants">
+        <app-plant #plant  [initialWeight]="i"></app-plant>
+    </div>
+    
+</div>

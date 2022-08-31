@@ -1,0 +1,39 @@
+<div style="height:30%;width: 70%;display: grid;grid-template-columns: 60% 40%;">
+    <img id= "help" src="../assets/help.gif">
+    <div style="height:100%;margin-top: 0%;">
+        <p style="font-size:xx-small;height:16%;margin: 1%;"> Initial weight</p>
+        <p style="font-size:xx-small;height:16%;margin: 1%;"> Treatment dose</p>
+        <p style="font-size:xx-small;height:16%;margin: 1%;">{{groupfactors[0]}}</p>
+        <p style="font-size:xx-small;height:16%;margin: 0%;">{{groupfactors[1]}}</p>
+        <p style="font-size:xx-small;height:16%;margin: 0%;">{{groupfactors[2]}}</p>
+        <p style="font-size:xx-small;height:16%;margin: 0%;">{{groupfactors[3]}}</p>
+    </div>
+</div>
+
+<div>
+    <p class="gfHeader" id="header">Group Factor </p>  
+    <button class="gfHeader" [disabled]="addDisable" (click)="addgf()">Add</button>
+</div>
+<div style="overflow-x:auto;height:20%;width: 30%;" class="gftable">
+    <table >
+        <tr *ngFor="let i of nbgf" style="font-size: x-small;height:25%;" class="gf"><td  [class.selected]="selectedgf==i" (click)="gfselected(i)" >{{groupfactors[i]}}</td></tr>
+    </table>
+</div>
+<div>
+    <div class="gfgroups">
+        <label for="groupname">Groups for: </label>
+        <input id="groupname" [(ngModel)]="groupfactors[selectedgf]" placeholder="groupname">
+    </div>
+    <button class="gfgroups" (click)="addgroup()">Add</button>
+</div>
+<ng-container *ngFor="let g of nbgf">
+    <div  *ngIf="g==selectedgf" >
+        <div *ngFor="let group of groups[g]" style="height:fit-content" class="grouprow">
+            <label for="gname" [ngStyle]="{'background-color':group.color}" style="display:inline-block;width:20px;height:20px;margin-right: 2px;" (mousedown)="colorPicked(g,group)"></label> 
+            <input id="gname" [(ngModel)]="group.name" placeholder="gname" style="display:inline-block;height:20px;;">
+        </div>
+        
+    </div>
+</ng-container>
+
+

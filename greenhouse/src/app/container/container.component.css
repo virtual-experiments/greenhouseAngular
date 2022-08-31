@@ -1,0 +1,12 @@
+.container{
+    display: inline-grid;
+    grid-template-columns: auto auto auto auto;
+    min-width: 100px;
+    min-height: 74px;
+}
+
+.plants{
+    height: fit-content;
+    width: fit-content;
+    padding: 2px;
+}
