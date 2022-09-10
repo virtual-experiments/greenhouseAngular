@@ -6,6 +6,7 @@ import computations = greenhouse.computations;
 import Init = computations.Init;
 import { DOCUMENT } from '@angular/common';
 import { TrayComponent } from './tray/tray.component';
+import { GroupfactorComponent } from './groupfactor/groupfactor.component';
 
 @Component({
   selector: 'app-root',
@@ -20,8 +21,8 @@ export class AppComponent {
   CO2=350;
 
   @ViewChild("greenhouse") greenhouse!:ElementRef;
-  @ViewChild("groupfactor") groupfactor!:ElementRef;
-  @ViewChild(TrayComponent) tray!:ElementRef;
+  @ViewChild(GroupfactorComponent) groupfactor!:GroupfactorComponent;
+  @ViewChild(TrayComponent) tray!:TrayComponent;
   @ViewChild("grimg") grimg!:ElementRef;
   @ViewChild("main") main!:ElementRef;
   constructor(private grouppasser:GroupPasserService,private growingPlantService:GrowingPlantsService,@Inject(DOCUMENT) private document: Document) { 
@@ -37,6 +38,7 @@ export class AppComponent {
 
   ngAfterViewInit() :void{
     this.setgrhcoordinates();
+    //console.log(this.tray.Treatments);
   }
 
   setgrhcoordinates(){
@@ -61,16 +63,16 @@ export class AppComponent {
     let infos:{plantid:number,InitialWeight:number,EndWeight:number,Treatment:string,Xcoordinate:number,Ycoordinate:number,GroupFactors:string[]}[]=[];
     let id=1;
     for(let plant of this.growingPlantService.plants){
-      let trtmnt = this.tray.nativeElement.Treatments[plant.treatment-1];
+      let trtmnt = this.tray.Treatments[plant.treatment-1];
       //what if the position of the plant changes due to resize?
       let xcrdnt = 8*((plant.getPosition().left+plant.getPosition().right)/2-this.grimg.nativeElement.getBoundingClientRect().left)/this.grimg.nativeElement.width;
       let ycrdnt = 8*((plant.getPosition().bottom+plant.getPosition().top)/2-this.grimg.nativeElement.getBoundingClientRect().top)/this.grimg.nativeElement.height;
       let i =0;
       let grf=[];
-      while(i<this.groupfactor.nativeElement.nbaddedgf){
+      while(i<this.groupfactor.nbaddedgf){
         let gnb =plant.gfColorsNb[i];
         if(gnb!=-1){
-          grf.push(this.groupfactor.nativeElement.groups[i][gnb-1].name);
+          grf.push(this.groupfactor.groups[i][gnb-1].name);
         }
         else{
           grf.push("Default Group");
@@ -86,8 +88,8 @@ export class AppComponent {
   showResults(a:HTMLAnchorElement){
     let header =["PlantId","InitialWeight","EndWeight","Treatment","X-coordinate","Y-coordinate"];
     let i=0;
-    while(i<this.groupfactor.nativeElement.nbaddedgf){
-      header.push(this.groupfactor.nativeElement.groupfactors[i]);
+    while(i<this.groupfactor.nbaddedgf){
+      header.push(this.groupfactor.groupfactors[i]);
       i+=1;
     }
     let data = header.join(",");
@@ -111,6 +113,7 @@ export class AppComponent {
   }
 
   growPlants(dates:{begindate:number,beginmonth:number,enddate:number,endmonth:number}){
+    console.log("plants grown");
     //Init.g;
     //this.initialWeight * RSF_N, this.initialWeight * RSF_L, this.initialWeight * RSF_A, this.initialWeight * RSF_S, this.x,this.y
     for(let plant of this.growingPlantService.plants){
@@ -118,8 +121,9 @@ export class AppComponent {
       let ycrdnt = 8*((plant.getPosition().bottom+plant.getPosition().top)/2-this.grimg.nativeElement.getBoundingClientRect().top)/this.grimg.nativeElement.height;
       const  inie:Init = new Init(plant.initialWeight*plant.RSF_N,plant.initialWeight*plant.RSF_L,plant.initialWeight*plant.RSF_A,plant.initialWeight*plant.RSF_S,xcrdnt,ycrdnt);
       //inie.general(startday, startmonth, endday, endmonth, CO2, this.treatment.getNitrateLevel());
-      inie.general(dates.begindate,dates.beginmonth,dates.enddate,dates.endmonth,this.CO2,this.tray.nativeElement.colorPicker.doses[plant.treatment-1]);
+      inie.general(dates.begindate,dates.beginmonth,dates.enddate,dates.endmonth,this.CO2,this.tray.getColorPickerDoses()[plant.treatment-1]);
       plant.endWeight=inie.getWeight();
+      console.log(plant);
     }
     
   }

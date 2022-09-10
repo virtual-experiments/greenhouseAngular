@@ -101,4 +101,8 @@ export class TrayComponent implements OnInit {
       this.traynb +=1;
     }
   }
+
+  getColorPickerDoses(){
+    return this.colorPicker.doses;
+  }
 }
