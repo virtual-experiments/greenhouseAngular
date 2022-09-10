@@ -86,6 +86,7 @@ export class AppComponent {
   }
 
   showResults(a:HTMLAnchorElement){
+    console.log("Download results");
     let header =["PlantId","InitialWeight","EndWeight","Treatment","X-coordinate","Y-coordinate"];
     let i=0;
     while(i<this.groupfactor.nbaddedgf){
@@ -107,9 +108,7 @@ export class AppComponent {
  
     // Setting the anchor tag attribute for downloading
     // and passing the download file name
-    a.setAttribute('download', 'results.csv');
-    // Performing a download with click
-    a.click();
+    a.setAttribute('download', 'GreenHouseResults.csv');
   }
 
   growPlants(dates:{begindate:number,beginmonth:number,enddate:number,endmonth:number}){
@@ -123,7 +122,6 @@ export class AppComponent {
       //inie.general(startday, startmonth, endday, endmonth, CO2, this.treatment.getNitrateLevel());
       inie.general(dates.begindate,dates.beginmonth,dates.enddate,dates.endmonth,this.CO2,this.tray.getColorPickerDoses()[plant.treatment-1]);
       plant.endWeight=inie.getWeight();
-      console.log(plant);
     }
     
   }

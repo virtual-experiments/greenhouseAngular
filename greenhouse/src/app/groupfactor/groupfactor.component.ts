@@ -24,7 +24,7 @@ export class GroupfactorComponent implements OnInit {
       this.addDisable=true;
     }
     this.selectedgf = this.nbaddedgf-1;
-    this.groupfactors[this.selectedgf] = "Group Factor" +this.nbaddedgf;
+    this.groupfactors[this.selectedgf] = "Group Factor " +this.nbaddedgf;
   }
 
   gfselected(i:number){

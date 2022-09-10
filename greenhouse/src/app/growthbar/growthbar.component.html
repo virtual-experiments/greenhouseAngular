@@ -1,17 +1,17 @@
 <div style="display:flex">
-    <p  #bgdate style="background-color: white;display: inline-block;font-size: x-small;width: 5%;height: 100%; ">begin date</p>
+    <p  #bgdate style="display: inline-block;font-size: x-small;width: fit-content;height: 100%; ">begin date</p>
     <mat-select style="display:inline-block;width: 3%;" [(value)]="begindate">
     <mat-option style=" font-size:x-small" *ngFor="let i of nbdays" [value]="i">{{i}}</mat-option>
     </mat-select>
-    <p style="background-color: white;display: inline-block;font-size: x-small;width: 7%;margin-left: 1%;">begin month</p>
+    <p style="display: inline-block;font-size: x-small;width: fit-content;margin-left: 1%;">begin month</p>
     <mat-select style="display:inline-block;width: 3%;" [(value)]="beginmonth">
     <mat-option style=" font-size:x-small" *ngFor="let i of nbmonths" [value]="i">{{i}}</mat-option>
     </mat-select>
-    <p style="background-color: white;display: inline-block;font-size: x-small;width: 5%;margin-left: 1%;">end date</p>
+    <p style="display: inline-block;font-size: x-small;width: fit-content;margin-left: 1%;">end date</p>
     <mat-select style="display:inline-block;width: 3%;" [(value)]="enddate">
     <mat-option style=" font-size:x-small" *ngFor="let i of nbdays" [value]="i">{{i}}</mat-option>
     </mat-select>
-    <p style="background-color: white;display: inline-block;font-size: x-small;width: 5%;margin-left: 1%;">end month</p>
+    <p style="display: inline-block;font-size: x-small;width: fit-content;margin-left: 1%;">end month</p>
     <mat-select style="display:inline-block;width: 3%;" [(value)]="endmonth">
     <mat-option style=" font-size:x-small" *ngFor="let i of nbmonths" [value]="i">{{i}}</mat-option>
     </mat-select>
