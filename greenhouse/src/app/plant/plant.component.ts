@@ -18,6 +18,7 @@ export class PlantComponent implements OnInit, AfterViewInit {
   circleColor:string="green";
   treatment:number=1;
   inGreenHouse=false;
+  //NOT USED?
   position:{left:number,right:number,top:number,bottom:number}={left:0,right:0,top:0,bottom:0};
   RSF_N = 1.886;
   RSF_L = 0.606;
@@ -41,7 +42,8 @@ export class PlantComponent implements OnInit, AfterViewInit {
     ctx.fill();
     ctx.fillStyle="rgb(0,0,0)";
     ctx.font = "12px Arial";
-    ctx.fillText(Math.round(this.initialWeight).toString(),centerX-centerX/4,centerY,this.circle.nativeElement.width /3);
+    const rounded = Math.round(this.initialWeight);
+    ctx.fillText(rounded.toString(),centerX-centerX/4,centerY,this.circle.nativeElement.width /3);
   }
 
   ChangeColor(color:string,treatmentnb:number){
@@ -126,7 +128,8 @@ export class PlantComponent implements OnInit, AfterViewInit {
       console.log(this.colorPicker.color);
       ctx.fillStyle="rgb(0,0,0)";
       ctx.font = "12px Arial";
-      ctx.fillText(this.initialWeight.toString(),circle.width/2-circle.width/8,circle.height/2,circle.width/3);
+      const rounded = Math.round(this.initialWeight);
+      ctx.fillText(rounded.toString(),circle.width/2-circle.width/8,circle.height/2,circle.width/3);
       
     }
   }
