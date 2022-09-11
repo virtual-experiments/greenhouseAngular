@@ -42,13 +42,12 @@ export class AppComponent {
   }
 
   setgrhcoordinates(){
-    this.grouppasser.grhouseleft=this.greenhouse.nativeElement.getBoundingClientRect().left;
-    this.grouppasser.grhouseright=this.greenhouse.nativeElement.getBoundingClientRect().right;
-    this.grouppasser.grhousetop=this.greenhouse.nativeElement.getBoundingClientRect().top;
-    this.grouppasser.grhousebottom=this.greenhouse.nativeElement.getBoundingClientRect().bottom;
-    console.log("grh position:  ");
-    console.log(this.grouppasser.grhouseleft);
-    console.log(this.grouppasser.grhouseright);
+    //console.log(this.grimg.nativeElement.getBoundingClientRect());
+    //console.log(this.greenhouse.nativeElement.getBoundingClientRect())
+    this.grouppasser.grhouseleft=this.grimg.nativeElement.getBoundingClientRect().left;
+    this.grouppasser.grhouseright=this.grimg.nativeElement.getBoundingClientRect().right;
+    this.grouppasser.grhousetop=this.grimg.nativeElement.getBoundingClientRect().top;
+    this.grouppasser.grhousebottom=this.grimg.nativeElement.getBoundingClientRect().bottom;
   }
 
   mouseUp(){

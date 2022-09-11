@@ -53,7 +53,13 @@ export class PlantComponent implements OnInit, AfterViewInit {
 
   handleDragEnd(event: CdkDragEnd): void {
     let rect = event.source.element.nativeElement.getBoundingClientRect();
-    if(rect.left<this.grouppasser.grhouseleft || rect.top<this.grouppasser.grhousetop || rect.right>this.grouppasser.grhouseright || rect.bottom>this.grouppasser.grhousebottom){
+    const centerX = (rect.left+rect.right)/2;
+    const centerY = (rect.top+rect.bottom)/2;
+    console.log("greenhouse bounds:");
+    console.log(this.grouppasser.grhouseleft);
+    console.log(this.grouppasser.grhousetop);
+    //rect.left<this.grouppasser.grhouseleft || rect.top<this.grouppasser.grhousetop || rect.right>this.grouppasser.grhouseright || rect.bottom>this.grouppasser.grhousebottom
+    if(centerX<this.grouppasser.grhouseleft || centerY<this.grouppasser.grhousetop || centerX>this.grouppasser.grhouseright || centerY>this.grouppasser.grhousebottom){
       event.source.reset();
       this.inGreenHouse=false;
       this.position={left:0,right:0,top:0,bottom:0};

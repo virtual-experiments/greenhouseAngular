@@ -4,7 +4,7 @@
 
 -positioning of borders of greenhouse for circles
 
--zooming disabling ??
+-zooming disabling ?? recalculating if circle inside greenhouse when resize or zoom?
 
 -reading file for metelogical data
 
