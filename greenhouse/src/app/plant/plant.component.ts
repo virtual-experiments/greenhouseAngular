@@ -41,7 +41,7 @@ export class PlantComponent implements OnInit, AfterViewInit {
     ctx.fill();
     ctx.fillStyle="rgb(0,0,0)";
     ctx.font = "12px Arial";
-    ctx.fillText(this.initialWeight.toString(),centerX-centerX/4,centerY,this.circle.nativeElement.width /3);
+    ctx.fillText(Math.round(this.initialWeight).toString(),centerX-centerX/4,centerY,this.circle.nativeElement.width /3);
   }
 
   ChangeColor(color:string,treatmentnb:number){

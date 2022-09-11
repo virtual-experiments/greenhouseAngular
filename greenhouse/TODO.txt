@@ -1,0 +1,11 @@
+-Initial weight calculations
+
+-text size limitation for group factor and tray
+
+-positioning of borders of greenhouse for circles
+
+-zooming disabling ??
+
+-reading file for metelogical data
+
+-mouse draging and click for doses and groups
