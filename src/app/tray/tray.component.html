@@ -15,8 +15,8 @@
     <div *ngIf="addedtreatments>=treatment+1" class="treatments">
         <input id="trname" [(ngModel)]="Treatments[treatment]" style="height:100%;">
         <div #colorPicker1 (click)="colorPicked(treatment)" class="colorPicker" [ngStyle]="{'background-color':colors[getColorPicker().doses[treatment]-1]}">{{"Dose "+(getColorPicker().doses[treatment])}}</div>
-        <button class="leftbtn" style="background-image: url(../assets/left.png);" (click)="decreaseDose(treatment)"></button>
-        <button class="rightbtn" style="background-image: url(../assets/right.png);" (click)="increaseDose(treatment)"></button>
+        <button class="leftbtn" style="background-image: url(.../assets/left.png);" (click)="decreaseDose(treatment)"></button>
+        <button class="rightbtn" style="background-image: url(.../assets/right.png);" (click)="increaseDose(treatment)"></button>
     </div>
 </div>
 
