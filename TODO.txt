@@ -9,3 +9,5 @@
 -reading file for metelogical data
 
 -mouse draging and click for doses and groups
+
+-not highlghting text  while dragging

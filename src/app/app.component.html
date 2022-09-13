@@ -1,4 +1,5 @@
-<body (mouseup)="mouseUp()" (resize)="windresize()">
+
+<body (mouseup)="mouseUp()" (resize)="windresize()" [ngStyle]="{'cursor':isGroupChosen()?drag:isColorPicked()?crosshair:default}">
 <div c0lass="toolbar" style="height: fit-content;">
   <button mat-button [matMenuTriggerFor]="aboveMenu">File</button>
   <mat-menu #aboveMenu="matMenu" yPosition="above">
@@ -17,7 +18,7 @@
 
   </mat-menu>
 </div>
-<div #main style="height: 80%; margin-top: 3%;display: grid;grid-template-columns: 30% 30% 30%;">
+<div #main style="height: fit-content; margin-top: 3%;display: grid;grid-template-columns: 30% 30% 30%;">
   <app-groupfactor #groupfactor class="Childmain" style="width:70%; height: 100%; top: 10%;padding-left: 1%;"></app-groupfactor>
   <div #greenhouse class="greenhouse" style="width:70%;left: 0%;">
     <img #grimg id="lights" src="./assets/lights.gif">
@@ -25,7 +26,7 @@
   <app-tray #tray class="Childmain" style="width:100%;justify-self: end;"></app-tray>
 </div>
 
-<div style="height: 5%;margin-left:25%;">
+<div style="height: 5%;margin-left:30%;margin-top: 5%;">
   <app-growthbar style="width: 50%;" (grow)="growPlants($event)" (viewOutput)="showResults($event)"></app-growthbar>
 </div>
 </body>

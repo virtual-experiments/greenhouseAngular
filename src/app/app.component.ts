@@ -7,6 +7,7 @@ import Init = computations.Init;
 import { DOCUMENT } from '@angular/common';
 import { TrayComponent } from './tray/tray.component';
 import { GroupfactorComponent } from './groupfactor/groupfactor.component';
+import {ColorPickerService} from "./color-picker.service";
 
 @Component({
   selector: 'app-root',
@@ -19,13 +20,19 @@ export class AppComponent {
   nbtrays=12;
   plantGrown:boolean=false;
   CO2=350;
+  drag="grab";
+  default ="default";
+  crosshair ="crosshair";
+  //"url(./assets/colorPicker.jpg)"
+  colorPickerIcon = "url(./assets/colorPicker3.jpg)";
 
   @ViewChild("greenhouse") greenhouse!:ElementRef;
   @ViewChild(GroupfactorComponent) groupfactor!:GroupfactorComponent;
   @ViewChild(TrayComponent) tray!:TrayComponent;
   @ViewChild("grimg") grimg!:ElementRef;
   @ViewChild("main") main!:ElementRef;
-  constructor(private grouppasser:GroupPasserService,private growingPlantService:GrowingPlantsService,@Inject(DOCUMENT) private document: Document) { 
+
+  constructor(private colorPicker:ColorPickerService,private grouppasser:GroupPasserService,private growingPlantService:GrowingPlantsService,@Inject(DOCUMENT) private document: Document) { 
     for(let i =1;i<this.nbtrays+1;i++){
       this.trays.push(i);
     }
@@ -39,6 +46,14 @@ export class AppComponent {
   ngAfterViewInit() :void{
     this.setgrhcoordinates();
     //console.log(this.tray.Treatments);
+  }
+
+  isGroupChosen(){
+    return this.grouppasser.groupchose;
+  }
+
+  isColorPicked(){
+    return this.colorPicker.changeColor;
   }
 
   setgrhcoordinates(){

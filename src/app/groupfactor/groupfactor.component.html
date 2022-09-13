@@ -29,8 +29,9 @@
 <ng-container *ngFor="let g of nbgf">
     <div  *ngIf="g==selectedgf" >
         <div *ngFor="let group of groups[g]" style="height:fit-content" class="grouprow">
-            <label for="gname" [ngStyle]="{'background-color':group.color}" style="display:inline-block;width:20px;height:20px;margin-right: 2px;" (mousedown)="colorPicked(g,group)"></label> 
             <input id="gname" [(ngModel)]="group.name" placeholder="gname" style="display:inline-block;height:20px;font-size: xx-small;">
+            <label for="gname" title="Drag group color to the plant" [ngStyle]="{'background-color':group.color}" style="display:inline-block;width:20px;height:20px;margin-right: 2px;" (mousedown)="colorPicked(g,group)"></label> 
+
         </div>
         
     </div>

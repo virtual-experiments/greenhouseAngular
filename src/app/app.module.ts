@@ -15,6 +15,7 @@ import { ContainerComponent } from './container/container.component';
 import {ScrollingModule} from '@angular/cdk/scrolling'; 
 import {MatSelectModule} from '@angular/material/select';
 import { GrowthbarComponent } from './growthbar/growthbar.component'; 
+import {MatSliderModule} from '@angular/material/slider';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { GrowthbarComponent } from './growthbar/growthbar.component';
     DragDropModule,
     FormsModule,
     ScrollingModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -24,9 +24,10 @@ export class TrayComponent implements OnInit {
   //doses:number[]=[];
   addedtreatments:number=1;
   colors:string[] = [ "green", "yellow","orange" ,"pink" , "red", "magenta", "blue","cyan","white", "gray"];
-  traynb=1;
+  traynb:number|null=null;
   
   ngOnInit(): void {
+    this.traynb=1;
     for(let i =1;i<this.nbtrays+1;i++){
       this.trays.push(i);
     }
@@ -48,6 +49,8 @@ export class TrayComponent implements OnInit {
     }
 
   }
+  
+  
   
   //treatement starts from 0
   colorPicked(treatment :number){
@@ -90,13 +93,18 @@ export class TrayComponent implements OnInit {
   }
 
   prevTray(){
+    if(this.traynb==null){
+      return;
+    }
     if(this.traynb>1){
-      //container.visible=false;
       this.traynb -=1;
     }
   }
 
   nextTray(){
+    if(this.traynb==null){
+      return;
+    }
     if(this.traynb<this.nbtrays){
       this.traynb +=1;
     }

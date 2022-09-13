@@ -56,19 +56,20 @@
   bottom: 0%;
 }
 .scroller{
-  background-color:white ;
+  
   width:9%;
   height:100%;
   margin-top: 0%;
   margin-bottom: 0%;
   display: inline-block;
+  font-size: xx-small;
 }
 
 .scrollbar{
   width:120px; 
   height: 12px;
   display:grid;
-  background-color: white;
+  
   grid-template-columns: 10% 80% 10% ;
 }
 
