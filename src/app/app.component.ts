@@ -74,7 +74,7 @@ export class AppComponent {
   }
 
   gatherInformation(){
-    let infos:{plantid:number,InitialWeight:number,EndWeight:number,Treatment:string,Xcoordinate:number,Ycoordinate:number,GroupFactors:string[]}[]=[];
+    //let infos:{plantid:number,InitialWeight:number,EndWeight:number,Treatment:string,Xcoordinate:number,Ycoordinate:number,GroupFactors:string[]}[]=[];
     let id=1;
     for(let plant of this.growingPlantService.plants){
       let trtmnt = this.tray.Treatments[plant.treatment-1];
@@ -93,10 +93,10 @@ export class AppComponent {
         }
         i+=1;
       }
-      infos.push({plantid:id,InitialWeight:plant.initialWeight,EndWeight:plant.endWeight,Treatment:trtmnt,Xcoordinate:xcrdnt,Ycoordinate:ycrdnt,GroupFactors:grf});
+      this.growingPlantService.infos.push({plantid:id,InitialWeight:plant.initialWeight,EndWeight:plant.endWeight,Treatment:trtmnt,Xcoordinate:xcrdnt,Ycoordinate:ycrdnt,GroupFactors:grf});
       id+=1;
     }
-    return infos;
+    //return infos;
   }
 
   showResults(a:HTMLAnchorElement){
@@ -109,8 +109,8 @@ export class AppComponent {
     }
     let data = header.join(",");
     data+="\n";
-    let infos = this.gatherInformation();
-    infos.forEach(function(row) {  
+    //let infos = this.gatherInformation();
+    this.growingPlantService.infos.forEach(function(row) {  
       data += Object.values(row).join(',');  
       data += "\n";  
     });
@@ -126,6 +126,7 @@ export class AppComponent {
   }
 
   growPlants(dates:{begindate:number,beginmonth:number,enddate:number,endmonth:number}){
+    this.growingPlantService.infos=[];
     console.log("plants grown");
     //Init.g;
     //this.initialWeight * RSF_N, this.initialWeight * RSF_L, this.initialWeight * RSF_A, this.initialWeight * RSF_S, this.x,this.y
@@ -137,9 +138,7 @@ export class AppComponent {
       inie.general(dates.begindate,dates.beginmonth,dates.enddate,dates.endmonth,this.CO2,this.tray.getColorPickerDoses()[plant.treatment-1]);
       plant.endWeight=inie.getWeight();
     }
-    
+    this.gatherInformation();
   }
 
-  
-  
 }

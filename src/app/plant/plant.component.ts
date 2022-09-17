@@ -1,5 +1,5 @@
 import { CdkDragEnd } from '@angular/cdk/drag-drop';
-import { Component, ElementRef, OnInit,AfterViewInit, ViewChild , Input} from '@angular/core';
+import { Component, ElementRef, OnInit,AfterViewInit, ViewChild , Input, HostListener} from '@angular/core';
 import {ColorPickerService} from "../color-picker.service";
 import { GroupPasserService } from '../group-passer.service';
 import {GrowingPlantsService} from '../growing-plants.service';
@@ -20,16 +20,36 @@ export class PlantComponent implements OnInit, AfterViewInit {
   inGreenHouse=false;
   //NOT USED?
   position:{left:number,right:number,top:number,bottom:number}={left:0,right:0,top:0,bottom:0};
+
   RSF_N = 1.886;
   RSF_L = 0.606;
   RSF_A = 0.021;
   RSF_S = 0.394;
+
   constructor(private grouppasser:GroupPasserService,private colorPicker:ColorPickerService,private growingPlantService:GrowingPlantsService) { }
+
+  @HostListener("window:resize")
+  windresize(){
+    //console.log("window resize");
+    if(this.inGreenHouse){
+      let rect = this.getPosition();
+      const centerX = (rect.left+rect.right)/2;
+      const centerY = (rect.top+rect.bottom)/2;
+      if(centerX<this.grouppasser.grhouseleft || centerY<this.grouppasser.grhousetop || centerX>this.grouppasser.grhouseright || centerY>this.grouppasser.grhousebottom){
+        this.inGreenHouse=false;
+        this.position={left:0,right:0,top:0,bottom:0};
+        let i=this.growingPlantService.plants.indexOf(this);
+        if(i!=-1){
+          this.growingPlantService.plants.splice(i);
+        }
+      }
+    }
+  }
 
   ngOnInit(): void {
     this.colorPicker.addcallback(this.redrawCircle,this);
-    
   }
+
 
   ngAfterViewInit() :void{
     let ctx=this.circle.nativeElement.getContext("2d");
@@ -77,6 +97,12 @@ export class PlantComponent implements OnInit, AfterViewInit {
       if(i==-1){
         this.growingPlantService.plants.push(this);
       }
+      const width = this.grouppasser.grhouseright-this.grouppasser.grhouseleft;
+      const height = this.grouppasser.grhousebottom-this.grouppasser.grhousetop;
+      this.position.left=(rect.left-this.grouppasser.grhouseleft)/width;
+      this.position.right=(rect.right-this.grouppasser.grhouseleft)/width;
+      this.position.bottom = (rect.bottom-this.grouppasser.grhousetop)/height;
+      this.position.top = (rect.top-this.grouppasser.grhousetop)/height;
     }
   }
 
@@ -140,8 +166,8 @@ export class PlantComponent implements OnInit, AfterViewInit {
       this.colorPicker.addcallback(this.redrawCircle,this);
       this.redrawCircle(this.colorPicker.colors[this.colorPicker.color],this.circle.nativeElement);
     }
-    
   }
+
   mouseUp(circle: HTMLCanvasElement){
     if(this.grouppasser.groupchose){
       this.grouppasser.circleReceive=true;

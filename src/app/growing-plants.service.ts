@@ -7,6 +7,6 @@ import { PlantComponent } from './plant/plant.component';
 export class GrowingPlantsService {
 
   plants:PlantComponent[]=[];
-
+  infos:{plantid:number,InitialWeight:number,EndWeight:number,Treatment:string,Xcoordinate:number,Ycoordinate:number,GroupFactors:string[]}[]=[];
   constructor() { }
 }
