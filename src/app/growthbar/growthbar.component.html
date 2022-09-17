@@ -1,19 +1,19 @@
 <div style="display:flex">
-    <p  #bgdate style="display: inline-block;font-size: x-small;width: fit-content;height: 100%; ">begin date</p>
-    <mat-select style="display:inline-block;width: 3%;" [(value)]="begindate">
+    <p  #bgdate style="display: inline-block;font-size: x-small;width: fit-content;height: 100%; ">begin date </p>
+    <mat-select style="display:inline-block;width: fit-content;font-size:x-small;" [(value)]="begindate">
     <mat-option style=" font-size:x-small" *ngFor="let i of nbdays" [value]="i">{{i}}</mat-option>
     </mat-select>
-    <p style="display: inline-block;font-size: x-small;width: fit-content;margin-left: 1%;">begin month</p>
-    <mat-select style="display:inline-block;width: 3%;" [(value)]="beginmonth">
+    <p style="display: inline-block;font-size: x-small;width: fit-content;margin-left: 1%;">begin month </p>
+    <mat-select style="display:inline-block;width: fit-content;font-size:x-small;" [(value)]="beginmonth">
     <mat-option style=" font-size:x-small" *ngFor="let i of nbmonths" [value]="i">{{i}}</mat-option>
     </mat-select>
-    <p style="display: inline-block;font-size: x-small;width: fit-content;margin-left: 1%;">end date</p>
-    <mat-select style="display:inline-block;width: 3%;" [(value)]="enddate">
+    <p style="display: inline-block;font-size: x-small;width: fit-content;margin-left: 1%;">end date </p>
+    <mat-select style="display:inline-block;width: fit-content;font-size:x-small;" [(value)]="enddate">
     <mat-option style=" font-size:x-small" *ngFor="let i of nbdays" [value]="i">{{i}}</mat-option>
     </mat-select>
-    <p style="display: inline-block;font-size: x-small;width: fit-content;margin-left: 1%;">end month</p>
-    <mat-select style="display:inline-block;width: 3%;" [(value)]="endmonth">
-    <mat-option style=" font-size:x-small" *ngFor="let i of nbmonths" [value]="i">{{i}}</mat-option>
+    <p style="display: inline-block;font-size: x-small;width: fit-content;margin-left: 1%;">end month </p>
+    <mat-select style="display:inline-block;width: fit-content;font-size:x-small;" [(value)]="endmonth">
+    <mat-option style=" font-size:xx-small" *ngFor="let i of nbmonths" [value]="i">{{i}}</mat-option>
     </mat-select>
     <button style="display: inline-block;font-size: xx-small;" [ngStyle]="{'height':bgdate.style.height}" (click)="growPlants()">Grow</button>
     <button style="display: inline-block;font-size: xx-small;" [ngStyle]="{'height':bgdate.style.height}" (click)="viewOutputClicked(download)"><a #download>Download Output</a></button>
