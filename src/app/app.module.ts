@@ -16,6 +16,8 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
 import {MatSelectModule} from '@angular/material/select';
 import { GrowthbarComponent } from './growthbar/growthbar.component'; 
 import {MatSliderModule} from '@angular/material/slider';
+import { AboutDialogComponent } from './about-dialog/about-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import {MatSliderModule} from '@angular/material/slider';
     GroupfactorComponent,
     PlantComponent,
     ContainerComponent,
-    GrowthbarComponent
+    GrowthbarComponent,
+    AboutDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,8 @@ import {MatSliderModule} from '@angular/material/slider';
     FormsModule,
     ScrollingModule,
     MatSelectModule,
-    MatSliderModule
+    MatSliderModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

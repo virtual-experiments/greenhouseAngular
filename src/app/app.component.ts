@@ -8,6 +8,7 @@ import { DOCUMENT } from '@angular/common';
 import { TrayComponent } from './tray/tray.component';
 import { GroupfactorComponent } from './groupfactor/groupfactor.component';
 import {ColorPickerService} from "./color-picker.service";
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-root',
@@ -32,7 +33,7 @@ export class AppComponent {
   @ViewChild("grimg") grimg!:ElementRef;
   @ViewChild("main") main!:ElementRef;
 
-  constructor(private colorPicker:ColorPickerService,private grouppasser:GroupPasserService,private growingPlantService:GrowingPlantsService,@Inject(DOCUMENT) private document: Document) { 
+  constructor(private colorPicker:ColorPickerService,private grouppasser:GroupPasserService,private growingPlantService:GrowingPlantsService,@Inject(DOCUMENT) private document: Document,public dialog: MatDialog) { 
     for(let i =1;i<this.nbtrays+1;i++){
       this.trays.push(i);
     }
@@ -46,6 +47,10 @@ export class AppComponent {
   ngAfterViewInit() :void{
     this.setgrhcoordinates();
     //console.log(this.tray.Treatments);
+  }
+
+  openAboutDialog(): void {
+    this.dialog.open(AboutDialogComponent,{width: '400px',height:'300px'});
   }
 
   isGroupChosen(){
@@ -142,3 +147,17 @@ export class AppComponent {
   }
 
 }
+
+@Component({
+  selector: 'app-about-dialog',
+  templateUrl: './about-dialog.component.html'
+})
+export class AboutDialogComponent implements OnInit {
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+}
+
