@@ -9,6 +9,8 @@ import { TrayComponent } from './tray/tray.component';
 import { GroupfactorComponent } from './groupfactor/groupfactor.component';
 import {ColorPickerService} from "./color-picker.service";
 import { MatDialog } from '@angular/material/dialog';
+import {MatSnackBar} from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-root',
@@ -26,6 +28,9 @@ export class AppComponent {
   crosshair ="crosshair";
   //"url(./assets/colorPicker.jpg)"
   colorPickerIcon = "url(./assets/colorPicker3.jpg)";
+  visualizationLight =true;
+  grlights = "./assets/lights.gif";
+  
 
   @ViewChild("greenhouse") greenhouse!:ElementRef;
   @ViewChild(GroupfactorComponent) groupfactor!:GroupfactorComponent;
@@ -33,7 +38,7 @@ export class AppComponent {
   @ViewChild("grimg") grimg!:ElementRef;
   @ViewChild("main") main!:ElementRef;
 
-  constructor(private colorPicker:ColorPickerService,private grouppasser:GroupPasserService,private growingPlantService:GrowingPlantsService,@Inject(DOCUMENT) private document: Document,public dialog: MatDialog) { 
+  constructor(private _snackBar: MatSnackBar,private colorPicker:ColorPickerService,private grouppasser:GroupPasserService,private growingPlantService:GrowingPlantsService,@Inject(DOCUMENT) private document: Document,public dialog: MatDialog) { 
     for(let i =1;i<this.nbtrays+1;i++){
       this.trays.push(i);
     }
@@ -51,6 +56,21 @@ export class AppComponent {
 
   openAboutDialog(): void {
     this.dialog.open(AboutDialogComponent,{width: '400px',height:'300px'});
+  }
+
+  getImg(){
+    if(this.visualizationLight){
+      return this.grlights;
+    }
+    return "";
+  }
+
+  lightSwitch(){
+    this.visualizationLight = !this.visualizationLight;
+  }
+
+  close(){
+    window.close();
   }
 
   isGroupChosen(){
@@ -144,6 +164,9 @@ export class AppComponent {
       plant.endWeight=inie.getWeight();
     }
     this.gatherInformation();
+    this._snackBar.open("PLANTS GROWN","OK",{
+      duration: 2500
+    });
   }
 
 }

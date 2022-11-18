@@ -3,25 +3,24 @@
 <div c0lass="toolbar" style="height: fit-content;">
   <button mat-button [matMenuTriggerFor]="aboveMenu">File</button>
   <mat-menu #aboveMenu="matMenu" yPosition="above">
-    <button mat-menu-item>Exit</button>
+    <button mat-menu-item (click)="close()">Exit</button>
   </mat-menu>
 
   <button mat-button [matMenuTriggerFor]="belowMenu">Help</button>
   <mat-menu #belowMenu="matMenu" yPosition="below">
     <button mat-menu-item (click)="openAboutDialog()">About</button>
-    <button mat-menu-item>Applet Help</button>
   </mat-menu>
 
   <button mat-button [matMenuTriggerFor]="beforeMenu">Option</button>
   <mat-menu #beforeMenu="matMenu" xPosition="before">
-    <button mat-menu-item>Visualisation Lights</button>
+    <button mat-menu-item (click)="lightSwitch()">Visualisation Lights</button>
 
   </mat-menu>
 </div>
 <div #main style="height: fit-content; margin-top: 3%;display: grid;grid-template-columns: 30% 30% 30%;">
   <app-groupfactor #groupfactor class="Childmain" style="width:70%; height: 100%; top: 10%;padding-left: 1%;"></app-groupfactor>
   <div #greenhouse class="greenhouse" style="width:70%;left: 0%;">
-    <img #grimg id="lights" src="./assets/lights.gif">
+    <img #grimg id="lights" [src]="getImg()" style="background-color: gray;">
   </div>
   <app-tray #tray class="Childmain" style="width:100%;justify-self: end;"></app-tray>
 </div>

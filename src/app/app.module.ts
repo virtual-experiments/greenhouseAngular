@@ -18,6 +18,7 @@ import { GrowthbarComponent } from './growthbar/growthbar.component';
 import {MatSliderModule} from '@angular/material/slider';
 import { AboutDialogComponent } from './about-dialog/about-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     ScrollingModule,
     MatSelectModule,
     MatSliderModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
